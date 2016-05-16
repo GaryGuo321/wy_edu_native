@@ -1,0 +1,19 @@
+{
+  "name": "wy_edu_native",
+  "version": "1.0.0",
+  "description": ,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GaryGuo321/wy_edu_native.git"
+  },
+  "author": "GuoWeihan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GaryGuo321/wy_edu_native/issues"
+  },
+  "homepage": "https://github.com/GaryGuo321/wy_edu_native#readme"
+}

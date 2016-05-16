@@ -2,6 +2,8 @@
 <br>
 使用bower下载需要的包，如requirejs等<br>
 使用sass／compass对css进行编写<br>
+使用requirejs模块化加载js文件<br>
+使用gulp做为构建工具<br>
 <br>
 遵循css书写规范<br>
 <br>
@@ -12,7 +14,6 @@
 5.其他(animation, transition等)<br>
 <br>
 
-使用requirejs模块化加载js文件<br>
 使用原生js进行js代码的编写，使用自己写的一个小小的函数库(myLibrary)，封装了一些方法等<br>
 便于代码编写<br>
 
