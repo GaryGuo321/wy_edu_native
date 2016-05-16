@@ -489,7 +489,7 @@ $product2x: sprite-map("product2x/*.png", $layout: diagonal);
                             }
                             .rank-list-box {
                                 position: relative;
-                                height: 660px;
+                                max-height: 660px;
                                 margin-bottom: 15px;
                                 @include clearfix;
                             }
