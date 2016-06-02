@@ -195,8 +195,9 @@ function loginFollow() {
 	eventUnit.addHandler(followBox, 'click', function(e) {
 		var event = eventUnit.getEvent(e);
 		eventUnit.preventDafault(event);
+		var target = eventUnit.getTarget(event);
 		// 获取class名
-		var className = event.target.className;
+		var className = target.className;
 		// 如果点击的是取消按钮
 		if (className == 'cancel') {
 			// 获取已关注按钮
@@ -209,7 +210,7 @@ function loginFollow() {
 			login.cookieValue = cookieUtil.get(login.cookieName);
 			if (login.cookieValue) {
 				// 如果已经登陆，则创建已关注按钮，删除关注按钮
-				follow.creFollow(event.target);
+				follow.creFollow(target);
 			} else {
 				// 如果未登陆，则显示登陆框要求登陆
 				login.showFrame();
@@ -651,13 +652,14 @@ function subjectList() {
 	}, sub.composeEle.bind(sub));
 	eventUnit.addHandler(sub.tabParent, 'click', function(e) {
 		var event = eventUnit.getEvent(e);
-		sub.tabNum = dom.getAttr(event.target, 'value');
+		var target = eventUnit.getTarget(event);
+		sub.tabNum = dom.getAttr(target, 'value');
 		CORSRequest('http://study.163.com/webDev/couresByCategory.htm', {
 			'pageNo': sub.defaultShowPage,
 			'psize': sub.defaultShowNum,
 			'type': sub.tabNum * 10
 		}, sub.composeEle.bind(sub));
-		sub.switchSub(event.target, 'tab-click');
+		sub.switchSub(target, 'tab-click');
 	});
 	// 点击箭头切换
 	var arrowLeft = dom.getId('arrow-left');
