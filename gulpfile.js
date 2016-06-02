@@ -54,7 +54,6 @@ gulp.task('img', ['clean'], function() {
 // html
 gulp.task('html', ['clean'], function() {
 	gulp.src('./*.html')
-		.pipe(rev())
 		.pipe(htmlmin({
 			removeComments: true,
 			collapseWhitespace: true,
