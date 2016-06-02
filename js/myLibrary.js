@@ -555,25 +555,52 @@ var cookieUtil = {
 	}
 };
 //ajax请求
-var ajax = function(method, action, data, callback, asyn) {
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4) {
-			if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-				callback(xhr.responseText);
-			} else {
-				alert('Request was unsuccessful ' + xhr.status);
+var ajax = {
+	post: function(url, data, callback) {
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4) {
+				if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+					callback(xhr.responseText);
+				} else {
+					alert('Request was unsuccessful ' + xhr.status);
+				}
 			}
-		}
-	};
-	if (asyn) {
-		xhr.open(method, action, false);
-	} else {
-		xhr.open(method, action, true);
-	}
-	xhr.send(data);
-};
+		};
 
+		xhr.open('post', url, true);
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.send(serialize(data));
+	},
+	get: function(url, data, callback) {
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4) {
+				if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+					callback(xhr.responseText);
+				} else {
+					alert('Request was unsuccessful ' + xhr.status);
+				}
+			}
+		};
+		// 拼接数据
+		data = serialize(data);
+		url = url + '?' + data;
+
+		xhr.open('get', url, true);
+		xhr.send(null);
+	}
+};
+// 表单序列化
+function serialize(data) {
+	var serializeData = '';
+	for (key in data) {
+		serializeData += (encodeURIComponent(key) + '=' + encodeURIComponent(data[key]) + '&');
+	}
+	serializeData = serializeData.slice(0, -1);
+	return serializeData;
+}
+// CORS
 var CORSRequest = function(url, data, callback) {
 	// 数据拼接
 	if (data) {
