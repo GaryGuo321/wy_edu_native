@@ -398,7 +398,11 @@ function MessageScoll(box, mes1, mes2) {
 // 获取数据，插入到DOM中
 MessageScoll.prototype.getMessage = function(data) {
 	// json->对象
-	var addData = JSON.parse(data);
+	if (window.JSON) {
+		var addData = JSON.parse(data);
+	} else {
+		var addData = eval('(' + data + ')');
+	}
 	// 清空list1的内容
 	this.mes1.innerHTML = '';
 	// 将data进行数据的拼接，并加入list1中
@@ -523,7 +527,11 @@ SubList.prototype.switchSub = function(target, switchStyle) {
 };
 // 拼接数据
 SubList.prototype.composeEle = function(data) {
-	var data = JSON.parse(data);
+	if (window.JSON) {
+		var data = JSON.parse(data);
+	} else {
+		var data = eval('(' + data + ')');
+	}
 	var dataList = data.list;
 	var dataLength = dataList.length;
 	this.listParent.innerHTML = '';
