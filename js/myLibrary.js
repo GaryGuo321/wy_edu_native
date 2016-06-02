@@ -422,7 +422,16 @@ var dom = {
 					var preValue = parseInt(_self.getStyle(ele, attr));
 					var jsonAttr = json[attr];
 				}
-				// 2 速度计算
+
+				// 2 检测停止
+
+				if (preValue != jsonAttr) {
+					flag = false;
+				} else {
+					continue;
+				}
+
+				// 3 速度计算
 				if (speedType) {
 					//缓冲运动
 					var speed = (jsonAttr - preValue) / 10;
@@ -435,28 +444,25 @@ var dom = {
 						var speed = -10;
 					}
 				}
-				// 3 检测停止
 
-				if (preValue != jsonAttr) {
-					flag = false;
-				}
-				//判断动画停止
-				if (flag) {
-					clearInterval(ele.timer);
-					if (callback) {
-						callback();
-					}
+				//进行动画操作
+				if (attr == 'opacity') {
+					ele.style.opacity = (preValue + speed) / 100;
+					ele.style.filter = 'alpha(opacity=' + preValue + speed + ')';
 				} else {
-					//进行动画操作
-					if (attr == 'opacity') {
-						ele.style.opacity = (preValue + speed) / 100;
-						ele.style.filter = 'alpha(opacity=' + preValue + speed + ')';
-					} else {
-						ele.style[attr] = preValue + speed + "px";
-					}
+					ele.style[attr] = preValue + speed + "px";
+				}
+
+			}
+			//判断动画停止
+			if (flag) {
+				clearInterval(ele.timer);
+				if (callback) {
+					callback();
 				}
 			}
 		}, times);
+
 	},
 	// 获取css样式
 	getStyle: function(ele, attr) {
