@@ -573,6 +573,38 @@ var ajax = function(method, action, data, callback, asyn) {
 	}
 	xhr.send(data);
 };
+
+var CORSRequest = function(url, data, callback) {
+	// 数据拼接
+	if (data) {
+		var serializeData = '';
+		for (key in data) {
+			serializeData += (encodeURIComponent(key) + '=' + encodeURIComponent(data[key]) + '&');
+		}
+		serializeData = serializeData.slice(0, -1);
+
+		url = url + '?' + serializeData;
+	}
+	// 开始请求
+	var xhr = new XMLHttpRequest();
+
+	if ('withCredentials' in xhr) {
+		xhr.open('get', url, true);
+	} else {
+		xhr = new XDomainRequest();
+		xhr.open('get', url);
+	}
+
+	xhr.onload = function() {
+		callback(xhr.responseText);
+	};
+	xhr.onerror = function() {
+		alert('Request was unsuccessful');
+	};
+
+	xhr.send(null);
+};
+
 // md5加密
 var md5 = function(string) {
 

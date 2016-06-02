@@ -139,19 +139,6 @@ Login.prototype.closeFrame = function() {
 	// 登陆框隐藏
 	dom.hide(this.loginFrame);
 };
-// 验证登陆结果
-Login.prototype.verificate = function(method, url) {
-	// 对用户名和密码进行md5加密
-	var userVal = md5(this.user.value);
-	var pwdVal = md5(this.pwd.value);
-	var num = '';
-	// 验证ajax
-	ajax(method, url + '?userName=' + userVal + "&password=" + pwdVal, null, function(data) {
-		num = data;
-	}, true);
-	// 返回验证结果
-	return num;
-};
 // 错误提示
 Login.prototype.errorInfer = function(ele) {
 	// 错误提示框显示
@@ -242,10 +229,38 @@ function loginFollow() {
 	// 点击登录，并进行验证
 	var btnLogin = dom.getId('submit'); //提交按钮
 	eventUnit.addHandler(btnLogin, 'click', function(e) {
+		var form = document.forms['login-form'];
 		var event = eventUnit.getEvent(e);
 		eventUnit.preventDafault(event);
 		// 进行登陆验证，返回1表示成功，0表示失败
-		var num = parseInt(login.verificate('get', 'http://study.163.com/webDev/login.htm'));
+		CORSRequest('http://study.163.com/webDev/login.htm', {
+			userName: md5(form['userName'].value),
+			password: md5(form['password'].value)
+		}, function(num) {
+			num = parseInt(num);
+			if (num) {
+				// 登陆成功
+				var followEle = dom.getClass(document, 'follow')[0]; //关注按钮
+				// 关闭登陆框
+				login.closeFrame();
+				// 删除关注按钮
+				dom.removeElement(followEle);
+				// 设置登陆和关注的cookie值
+				cookieUtil.set(login.cookieName, true);
+				cookieUtil.set(follow.cookieName, true);
+				// 创建已关注按钮
+				follow.creAlreadyFollowEle();
+			} else {
+				// 登录失败
+				var errorMess = dom.getClass(document, 'login-error')[0]; //失败提示窗口
+				// 显示失败提示窗口
+				login.errorInfer(errorMess);
+			}
+		});
+	});
+
+	// 操作
+	var operate = function(num) {
 		if (num) {
 			// 登陆成功
 			var followEle = dom.getClass(document, 'follow')[0]; //关注按钮
@@ -264,7 +279,8 @@ function loginFollow() {
 			// 显示失败提示窗口
 			login.errorInfer(errorMess);
 		}
-	});
+	};
+
 }
 
 // 图片轮播模块
@@ -458,7 +474,7 @@ function hotCouresScroll() {
 	var mes2 = dom.getId('mes2'); //list2
 	var hotCoures = new MessageScoll(listBox, mes1, mes2);
 	// 获取滚动信息内容 hotcoures, 并将获取的数据插入到DOM树中
-	ajax('get', 'http://study.163.com/webDev/hotcouresByCategory.htm', null, hotCoures.getMessage.bind(hotCoures));
+	CORSRequest('http://study.163.com/webDev/hotcouresByCategory.htm', null, hotCoures.getMessage.bind(hotCoures));
 	// 间隔滚动，每次滚动高度／完成时间／延迟时间／hover是否停止
 	hotCoures.intervalScoll(66, 300, 5000, true);
 }
@@ -504,30 +520,6 @@ SubList.prototype.switchSub = function(target, switchStyle) {
 	for (var s = 0; s < sib.length; s++) {
 		dom.removeClass(sib[s], switchStyle);
 	}
-};
-// 点击页数切换
-SubList.prototype.pageSwitch = function(eventName) {
-	// 使用代理绑定事件
-	var pageList = this.pageList;
-	var _self = this;
-	eventUnit.addHandler(pageList, eventName, function(e) {
-		var event = eventUnit.getEvent(e);
-		_self.showPage = dom.getAttr(event.target, 'value');
-		_self.getSubList('get', 'http://study.163.com/webDev/couresByCategory.htm', {
-			'pageNo': _self.showPage,
-			'psize': _self.defaultShowNum,
-			'type': _self.tabNum * 10
-		}, _self.composeEle.bind(_self));
-	});
-};
-// 获取数据
-SubList.prototype.getSubList = function(method, url, data, callback) {
-	url += '?';
-	for (key in data) {
-		url += (key + '=' + data[key] + '&');
-	}
-	url = url.slice(0, -1);
-	ajax(method, url, null, callback);
 };
 // 拼接数据
 SubList.prototype.composeEle = function(data) {
@@ -644,7 +636,7 @@ function subjectList() {
 	var sub = new SubList(tabParent, listParent, pageList);
 	sub.defaultShow(20, 1, 1);
 	console.log(sub);
-	sub.getSubList('get', 'http://study.163.com/webDev/couresByCategory.htm', {
+	CORSRequest('http://study.163.com/webDev/couresByCategory.htm', {
 		'pageNo': sub.defaultShowPage,
 		'psize': sub.defaultShowNum,
 		'type': sub.tabNum * 10
@@ -652,7 +644,7 @@ function subjectList() {
 	eventUnit.addHandler(sub.tabParent, 'click', function(e) {
 		var event = eventUnit.getEvent(e);
 		sub.tabNum = dom.getAttr(event.target, 'value');
-		sub.getSubList('get', 'http://study.163.com/webDev/couresByCategory.htm', {
+		CORSRequest('http://study.163.com/webDev/couresByCategory.htm', {
 			'pageNo': sub.defaultShowPage,
 			'psize': sub.defaultShowNum,
 			'type': sub.tabNum * 10
@@ -666,7 +658,7 @@ function subjectList() {
 	eventUnit.addHandler(arrowLeft, 'click', function(e) {
 		if (sub.showPage > 1) {
 			sub.showPage -= 1;
-			sub.getSubList('get', 'http://study.163.com/webDev/couresByCategory.htm', {
+			CORSRequest('http://study.163.com/webDev/couresByCategory.htm', {
 				'pageNo': sub.showPage,
 				'psize': sub.defaultShowNum,
 				'type': sub.tabNum * 10
@@ -676,7 +668,7 @@ function subjectList() {
 	eventUnit.addHandler(arrowRight, 'click', function(e) {
 		if (sub.showPage < sub.totalPage) {
 			sub.showPage += 1;
-			sub.getSubList('get', 'http://study.163.com/webDev/couresByCategory.htm', {
+			CORSRequest('http://study.163.com/webDev/couresByCategory.htm', {
 				'pageNo': sub.showPage,
 				'psize': sub.defaultShowNum,
 				'type': sub.tabNum * 10
@@ -687,7 +679,7 @@ function subjectList() {
 	eventUnit.addHandler(sub.pageList, 'click', function(e) {
 		var event = eventUnit.getEvent(e);
 		sub.showPage = dom.getAttr(event.target, 'value');
-		sub.getSubList('get', 'http://study.163.com/webDev/couresByCategory.htm', {
+		CORSRequest('http://study.163.com/webDev/couresByCategory.htm', {
 			'pageNo': sub.showPage,
 			'psize': sub.defaultShowNum,
 			'type': sub.tabNum * 10
@@ -744,7 +736,8 @@ function vedioControl() {
 }
 
 // 初始化
-~ function init() {
+
+window.onload = function() {
 	// 顶部通知栏
 	topNoticeSet();
 	// 关注登陆
@@ -757,4 +750,4 @@ function vedioControl() {
 	subjectList();
 	// 视频播放
 	vedioControl();
-}()
+}
