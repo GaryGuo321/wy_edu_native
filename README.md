@@ -1,8 +1,7 @@
 用户名：studyOnline 密码：study.163.com<br>
 <br>
-使用bower下载需要的包，如requirejs等<br>
+使用bower下载需要的包<br>
 使用sass／compass对css进行编写<br>
-使用requirejs模块化加载js文件<br>
 使用gulp做为构建工具<br>
 <br>
 遵循css书写规范<br>
