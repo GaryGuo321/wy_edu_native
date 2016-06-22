@@ -62,7 +62,7 @@ var eventUnit = {
 	//跨浏览器事件对象
 	//返回对event的引用方式
 	getEvent: function(event) {
-		return event ? event : window.event;
+		return event || window.event;
 	},
 	//获取目标元素
 	getTarget: function(event) {
@@ -75,6 +75,7 @@ var eventUnit = {
 		} else {
 			event.returnValue = false;
 		}
+		return false;
 	},
 	//解除绑定事件
 	removeHandler: function(element, type, handler) {
@@ -471,6 +472,48 @@ var dom = {
 			return ele.currentStyle[attr];
 		} else {
 			return getComputedStyle(ele, false)[attr];
+		}
+	},
+	// 自定义属性兼容
+	getDataset: function(ele) {
+		if (ele.dataset) {
+			// 支持原生方法
+			return ele.dataset;
+		} else {
+			// 定义用于返回的空对象
+			var obj = {};
+			// 匹配以data-开头的属性
+			var reg = /^data-/;
+			// 获取元素全部属性
+			var attr = ele.attributes;
+			// 属性长度
+			var attrLength = attr.length;
+			// 遍历全部属性
+			for (var i = 0; i < attrLength; i++) {
+				// 如果匹配了data-开头，则继续，否则抛弃
+				if (reg.test(attr[i].name)) {
+					// 切割字符串，把data-去掉
+					var str = attr[i].name.slice(5);
+					// 把剩余的abc-cde改成abcCde的格式
+					var strSplit = str.split('-');
+					var strSplitLength = strSplit.length;
+					// 如果length大于1则进行分割，改格式
+					if (strSplitLength > 1) {
+						// 把首字母改成大写
+						for (var s = 1; s < strSplitLength; s++) {
+							strSplit[s] = strSplit[s].replace(strSplit[s][0], strSplit[s][0].toUpperCase());
+						}
+						// 设置obj
+						str = strSplit.join('');
+						obj[str] = attr[i].value;
+					} else {
+						// 设置obj
+						obj[str] = attr[i].value;
+					}
+				}
+			}
+			// 返回自定义属性对象
+			return obj;
 		}
 	}
 };
