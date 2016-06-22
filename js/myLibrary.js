@@ -69,13 +69,12 @@ var eventUnit = {
 		return event.target || event.srcElement;
 	},
 	//阻止默认事件的发生
-	preventDafault: function(event) {
-		if (event.preventDafault) {
-			event.preventDefault();
+	preventDafault: function(e) {
+		if (e.preventDefault) {
+			e.preventDefault();
 		} else {
-			event.returnValue = false;
+			e.returnValue = false;
 		}
-		return false;
 	},
 	//解除绑定事件
 	removeHandler: function(element, type, handler) {
@@ -88,11 +87,11 @@ var eventUnit = {
 		}
 	},
 	//阻止事件冒泡
-	stopPropagation: function(event) {
-		if (event.stopPropagation) {
-			event.stopPropagation();
+	stopPropagation: function(e) {
+		if (e.stopPropagation) {
+			e.stopPropagation();
 		} else {
-			event.cancelBubble = true;
+			e.cancelBubble = true;
 		}
 	}
 };
