@@ -1,4 +1,6 @@
-# wy_edu
+# wy_edu_native
+
+兼容IE8+<br>
 
 用户名：studyOnline 密码：study.163.com<br>
 <br>
