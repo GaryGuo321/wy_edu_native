@@ -1,0 +1,824 @@
+@import "reset",
+"var",
+"mixin";
+@font-face {
+    font-family: 'icomoon';
+    src: url('fonts/icomoon.eot?3j39ma');
+    src: url('fonts/icomoon.eot?3j39ma#iefix') format('embedded-opentype'), url('fonts/icomoon.ttf?3j39ma') format('truetype'), url('fonts/icomoon.woff?3j39ma') format('woff'), url('fonts/icomoon.svg?3j39ma#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-user:before {
+    content: "\e900";
+}
+
+.icon-search:before {
+    content: "\e901";
+}
+
+.icon-cross:before {
+    content: "\e903";
+}
+
+.icon-sina-weibo:before {
+    content: "\e902";
+}
+
+.header {
+    @include min-width($min-width);
+    @media screen and (max-width: 1205px) {
+        @include min-width($small-min-width);
+    }
+    @at-root {
+        .h-notice {
+            padding: 10px 0;
+            color: $color-8;
+            font-size: 12px;
+            background-color: $color-1;
+            @include clearfix;
+            @at-root {
+                .notice-content {
+                    @include width-center($min-width);
+                    @media screen and (max-width: 1205px) {
+                        @include width-center($small-min-width);
+                    }
+                    p {
+                        @include float-left;
+                        a {
+                            color: $color-2;
+                            @include hover-under;
+                        }
+                    }
+                    a {
+                        @include float-right;
+                        i {
+                            @include inline-block;
+                            @include dimension(8px,
+                            8px);
+                            @include retina-image("../images/product@2x.png",
+                            260px,
+                            251px);
+                            background-image: url(../images/product.png)\9;
+                            background-position: -124px -120px;
+                        }
+                    }
+                }
+            }
+        }
+        .h-content {
+            @include width-center($min-width);
+            @media screen and (max-width: 1205px) {
+                @include width-center($small-min-width);
+            }
+            padding: 30px 0;
+            @include clearfix;
+            @at-root {
+                .logo {
+                    @include inline-block;
+                    p {
+                        font: {
+                            family: "Hiragino Sans GB";
+                            size: 25px;
+                        }
+                        em {
+                            @include inline-block;
+                            @include dimension(1px,
+                            24px);
+                            vertical-align: top;
+                            background-color: $color-3;
+                        }
+                        span {
+                            font-weight: bold;
+                            color: $color-3;
+                        }
+                    }
+                }
+                .message {
+                    @include inline-block;
+                    margin-left: 26px;
+                    @at-root {
+                        .follow,
+                        .fans,
+                        .follow-now {
+                            @include float-left;
+                            font: {
+                                family: SimSun;
+                                size: 12px;
+                            }
+                            text-align: center;
+                        }
+                        .follow {
+                            margin: 0 15px 0 0;
+                            padding: 0 5px;
+                            line-height: $fl-line-height;
+                            color: #fff;
+                            @include border-radius(2px);
+                            background-color: $color-2;
+                            cursor: pointer;
+                        }
+                        .follow-now {
+                            @include inline-block;
+                            margin-right: 15px;
+                            padding: 0 8px;
+                            line-height: ($fl-line-height)-2;
+                            background: $color-4;
+                            @include border-radius(2px);
+                            border: 1px solid #eee;
+                            i {
+                                @include inline-block;
+                                @include dimension(8px,
+                                8px);
+                                margin-right: 6px;
+                                @include retina-image("../images/product@2x.png",
+                                260px,
+                                251px);
+                                background-image: url(../images/product.png)\9;
+                                background-position: -117px -115px;
+                            }
+                            span {
+                                color: $color-6;
+                            }
+                            a {
+                                color: $color-6;
+                                @include hover-under-color($color-3);
+                                cursor: pointer;
+                            }
+                        }
+                        .fans {
+                            line-height: $fl-line-height;
+                        }
+                        .nav {
+                            @include inline-block;
+                            @include float-right;
+                            margin-top: 4px;
+                            @at-root {
+                                .nav-list {
+                                    @include inline-block-list();
+                                    font: {
+                                        family: "Hiragino Sans GB";
+                                        size: 15px;
+                                    }
+                                    color: $color-7;
+                                    li {
+                                        margin-right: $nav-margin-r;
+                                        a {
+                                            @include hover-color($color-2);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.main {
+    @include min-width($min-width);
+    @media screen and (max-width: 1205px) {
+        @include min-width($small-min-width);
+    }
+    padding-bottom: 90px;
+    @include box-sizing(border-box);
+    background-color: $m-bgcolor;
+    @include clearfix;
+    @at-root {
+        .m-banner {
+            position: relative;
+            height: $height-1;
+            @media screen and (max-width: 1205px) {
+                height: $height-2;
+            }
+            img {
+                // 让图片宽度溢出时居中显示
+                @include abs-row-center(1436.5px);
+                height: $height-1;
+                @media screen and (max-width: 1205px) {
+                    height: $height-2;
+                    @include abs-row-center(1280px);
+                }
+                // 透明度设置
+                @include opacity(0);
+            }
+            .arrow {
+                @include abs-row-center(70px,
+                200);
+                bottom: 10px;
+                width: 70px;
+                span {
+                    @include inline-block;
+                    @include dimension(10px,
+                    10px);
+                    margin: 0 5px 0 5px;
+                    @include border-radius(50%);
+                    background: #fff;
+                    cursor: pointer;
+                }
+                // 小圆点样式
+                .spanClick {
+                    background-color: $color-8;
+                }
+            }
+        }
+        .m-product {
+            @include width-center($min-width);
+            margin-top: 70px;
+            @media screen and (max-width: 1205px) {
+                @include width-center($small-min-width);
+                margin-top: 70px;
+            }
+            @include clearfix;
+            @at-root {
+                .product {
+                    position: relative;
+                    @include float-left;
+                    width: 33.333%;
+                    @include box-sizing(border-box);
+                    @media screen and (max-width: 1205px) {
+                        padding: 0 45px 0 100px;
+                    }
+                    padding: 0 45px 0 100px;
+                    i {
+                        @media screen and (max-width: 1205px) {
+                            @include abs-left-top(20px, 20px);
+                        }
+                        @include abs-left-top(28px,
+                        18px);
+                    }
+                    h1 {
+                        margin-bottom: 15px;
+                        font: {
+                            size: 22px;
+                            family: bold;
+                        }
+                        color: $color-8;
+                    }
+                    p {
+                        margin-bottom: 25px;
+                        font-size: 14px;
+                        color: $color-7;
+                        line-height: 24px;
+                    }
+                    a {
+                        color: $color-3;
+                        font-size: 12px;
+                        @include hover-under;
+                    }
+                }
+                .m-icon {
+                    @include retina-image("../images/product@2x.png",
+                    260px,
+                    251px);
+                    background-image: url(../images/product.png)\9;
+                    @include dimension(40px,
+                    42px);
+                }
+                .icon-open {
+                    background-position: 0px 0px;
+                }
+                .icon-cloud {
+                    background-position: -40px -36px;
+                }
+                .icon-mooc {
+                    background-position: -80px -76px;
+                }
+            }
+        }
+        .m-env {
+            width: 101%;
+            margin: 50px 0;
+            overflow: hidden;
+            img {
+                @include box-sizing(border-box);
+                @include float-left;
+                @include dimension(20%,
+                181px);
+                @media screen and (max-width: 1205px) {
+                    @include dimension(20%, 150px);
+                }
+                border-right: 3px solid #fff;
+            }
+        }
+        .m-content {
+            position: relative;
+            @include box-sizing(border-box);
+            @include width-center($min-width);
+            @media screen and (max-width: 1205px) {
+                @include width-center($small-min-width);
+            }
+            margin-top: 10px;
+            padding-right: 230px;
+            @at-root {
+                .main-content {
+                    @include float-left;
+                    width: 100%;
+                    @at-root {
+                        .list {
+                            @include inline-block;
+                            margin-bottom: 30px;
+                            @include clearfix;
+                            .tab {
+                                display: block;
+                                @include float-left;
+                                @include dimension(180px,
+                                40px);
+                                font-size: 19px;
+                                text-align: center;
+                                line-height: 40px;
+                                color: $color-8;
+                                background-color: #fff;
+                                @include box-shadow(0 1px 1px rgba(6,
+                                0,
+                                1,
+                                .2));
+                                cursor: pointer;
+                            }
+                            .tab-click {
+                                background-color: $color-3;
+                                color: #fff;
+                            }
+                        }
+                        .subject-list {
+                            margin-left: -20px;
+                        }
+                        .subject-list:after {
+                            content: '';
+                            display: block;
+                            clear: both;
+                        }
+                        .subject-box {
+                            position: relative;
+                            @include box-sizing(border-box);
+                            @include float-left;
+                            width: 25%;
+                            @media screen and (max-width: 1205px) {
+                                width: 33.333%;
+                                &:hover,
+                                &:active {
+                                    .sub-hover {
+                                        display: block;
+                                    }
+                                }
+                            }
+                            padding-left: 20px;
+                            margin: 0 0 20px 0;
+                        }
+                        .subject {
+                            @include inline-block;
+                            width: 100%;
+                            background: #fff;
+                            @include box-shadow(0 1px 1px rgba(0,
+                            0,
+                            0,
+                            .1));
+                            cursor: pointer;
+                            &:hover,
+                            &:active {
+                                @include box-shadow(1px 2px 2px rgba(0,
+                                0,
+                                0,
+                                .3));
+                                .title {
+                                    color: $color-3;
+                                }
+                            }
+                            .sub-img {
+                                width: 100%;
+                                height: 130px;
+                            }
+                            .title {
+                                margin: 6px 7px 0 7px;
+                                font-size: 13px;
+                                color: $color-8;
+                                @include ellipsis;
+                            }
+                            .album {
+                                margin: 6px 7px 0 7px;
+                                font-size: 13px;
+                                color: $color-6;
+                            }
+                            .num {
+                                @include inline-block;
+                                margin: 6px 7px 0 7px;
+                                padding: 2px 3px;
+                                font-size: 12px;
+                                color: $color-6;
+                                border: 1px solid $color-6;
+                                @include border-radius(2px);
+                            }
+                            .price {
+                                margin: 6px 7px 10px 7px;
+                                font-size: 13px;
+                                color: $sub-price-color;
+                            }
+                        }
+                        .sub-hover {
+                            display: none;
+                            @include abs-left-top(10px,
+                            -10px,
+                            1400);
+                            padding: 10px;
+                            width: 460px;
+                            background-color: #fff;
+                            box-shadow: 0 1px 1px 1px #e6e6e6;
+                            img {
+                                @include float-left();
+                                width: 244.98px;
+                                height: 130px;
+                            }
+                            h3 {
+                                margin: 0 0 12px $hover-sub-margin;
+                                font: 20px/26px 'Microsoft YaHei';
+                                color: #333;
+                            }
+                            .num {
+                                margin: 0 0 10px $hover-sub-margin;
+                                font: 12px/12px 'Microsoft YaHei';
+                                color: #666;
+                            }
+                            .provider {
+                                @extend .num;
+                                margin-bottom: 6px;
+                            }
+                            .sort {
+                                @extend .num;
+                                margin-bottom: 6px;
+                            }
+                            .description {
+                                clear: both;
+                                @include min-height(90px);
+                                // padding-left: 15px;
+                                padding-top: 17px;
+                                font: 14px/24px 'Microsoft YaHei';
+                            }
+                        }
+                        .page-num {
+                            @include clearfix;
+                            margin-top: 5px;
+                            font-size: 12px;
+                            .arrows {
+                                // 隐藏箭头
+                                display: none;
+                                @include float-right;
+                                @include dimension(30px,
+                                20px);
+                                margin: 0 3px 0 3px;
+                                color: #fff;
+                                text-align: center;
+                                line-height: 20px;
+                                background-color: $page-num-color;
+                                cursor: pointer;
+                            }
+                            ul {
+                                @include float-right;
+                            }
+                            li {
+                                @include inline-block;
+                                @include float-left;
+                                margin: 0 3px 0 3px;
+                                @include dimension(20px,
+                                20px);
+                                text-align: center;
+                                line-height: 20px;
+                                cursor: pointer;
+                                @include hover-bgcolor-color($page-num-color,
+                                #fff);
+                            }
+                            .select-li {
+                                background-color: $page-num-color;
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+                .sidebar {
+                    @include rel-right(-230px);
+                    @include float-left;
+                    width: 210px;
+                    margin-left: -210px;
+                    @at-root {
+                        .intro {
+                            width: 100%;
+                            background-color: #fff;
+                            text-align: center;
+                            @include box-shadow(0 1px 1px rgba(6,
+                            0,
+                            1,
+                            .2));
+                            h1 {
+                                padding-top: 15px;
+                                margin: 0 0 15px 10%;
+                                text-align: left;
+                                font-size: 16px;
+                                color: $color-8;
+                            }
+                            .hr {
+                                @include dimension(100%,
+                                1px);
+                                background-color: $color-11;
+                            }
+                            p {
+                                margin: 15px 0 10px 10%;
+                                font-size: 12px;
+                                text-align: left;
+                                color: $color-7;
+                            }
+                            .play-content {
+                                position: relative;
+                            }
+                            .vedio {
+                                margin-bottom: 20px;
+                                width: 80%;
+                                cursor: pointer;
+                            }
+                            .play {
+                                @include abs-row-center(46px,
+                                1000);
+                                top: 30px;
+                                cursor: pointer;
+                            }
+                        }
+                        .rank {
+                            margin-top: 25px;
+                            padding-bottom: 1px;
+                            width: 100%;
+                            background-color: #fff;
+                            @include box-shadow(0 1px 1px rgba(6,
+                            0,
+                            1,
+                            .2));
+                            h1 {
+                                padding-top: 15px;
+                                margin: 0 0 15px 10%;
+                                font-size: 16px;
+                                color: $color-7;
+                            }
+                            .hr {
+                                margin-bottom: 15px;
+                                @include dimension(100%,
+                                1px);
+                                background-color: $color-11;
+                            }
+                            .rank-list-box {
+                                position: relative;
+                                max-height: 660px;
+                                margin-bottom: 15px;
+                                @include clearfix;
+                            }
+                            .rank-list {
+                                display: block;
+                                padding: 8px 10% 8px 10%;
+                                @include clearfix;
+                                @include hover-bgcolor($color-5);
+                                div {
+                                    @include float-left;
+                                    margin-right: 10px;
+                                    @include dimension(50px,
+                                    50px);
+                                    overflow: hidden;
+                                }
+                                img {
+                                    height: 50px;
+                                    margin-left: -35px;
+                                }
+                                h2 {
+                                    margin-top: 3px;
+                                    color: $color-8;
+                                    font: {
+                                        size: 13px;
+                                        weight: normal;
+                                    }
+                                    @include ellipsis;
+                                }
+                                p {
+                                    margin-top: 10px;
+                                    font-size: 12px;
+                                    color: $color-6;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.footer {
+    @include clearfix;
+    @include min-width($min-width);
+    @media screen and (max-width: 1205px) {
+        @include min-width($small-min-width);
+    }
+    padding: 55px 0 55px 0;
+    background-color: $f-bgcolor;
+    color: $f-color;
+    .f-content {
+        @include width-center($min-width);
+        @media screen and (max-width: 1205px) {
+            @include width-center($small-min-width);
+        }
+        div {
+            @include float-left;
+        }
+        a {
+            color: $f-color;
+        }
+        @at-root {
+            .f-wangyi {
+                margin: 5px 80px 0 40px;
+                h2 {
+                    margin-bottom: 20px;
+                    color: $color-3;
+                    font: {
+                        size: 25px;
+                        weight: bold;
+                    }
+                }
+                p {
+                    font-size: 12px;
+                    line-height: 22px;
+                }
+            }
+            .f-list {
+                margin-left: 100px;
+                p {
+                    margin-bottom: 12px;
+                    font-size: 12px;
+                }
+                a {
+                    @include inline-block;
+                    font-size: 14px;
+                    line-height: 23px;
+                    @include hover-under;
+                }
+            }
+        }
+    }
+}
+
+// 背景遮罩
+.fixed-back {
+    display: none;
+    @include abs-left-top(0,
+    0,
+    1200);
+    @include min-width($min-width);
+    @media screen and (max-width: 1205px) {
+        @include min-width($small-min-width);
+    }
+    @include dimension(100%,
+    100%);
+    background: $color-14;
+    @include opacity(0.75);
+}
+
+.login-frame {
+    display: none;
+    @include fixed-center(380px,
+    298px,
+    1250);
+    // @include inline-block;
+    background: #fff;
+    @at-root {
+        .login-close {
+            @include clearfix;
+            background: #fff;
+            a {
+                @include inline-block;
+                @include float-right;
+                margin: 10px 10px 0 0;
+                font: {
+                    weight: normal;
+                    size: 12px;
+                }
+                @include hover-color($color-2);
+            }
+        }
+        .login-content {
+            padding: 20px 40px 40px;
+            h1 {
+                margin-bottom: 16px;
+                font: {
+                    size: 18px;
+                    weight: bold;
+                }
+                color: $color-15;
+            }
+            .login-form {
+                position: relative;
+                span {
+                    @include inline-block;
+                    font-size: 16px;
+                    color: $color-16;
+                }
+                .remind-user {
+                    @include abs-left-top(13px,
+                    16px);
+                }
+                .remind-pwd {
+                    @include abs-left-top(13px,
+                    78px);
+                }
+            }
+            .user-name {
+                display: block;
+                @include dimension(273px,
+                45px);
+                margin-bottom: 15px;
+                padding: 0 10px 0 10px;
+                font-size: 15px;
+                line-height: 45px;
+                background-color: $color-17;
+                border: solid 1px $color-18;
+                outline: none;
+                @include box-shadow(inset 3px 3px #f1f1f1);
+            }
+            .user-password {
+                @extend .user-name;
+            }
+            .submit {
+                display: block;
+                @include dimension(300px,
+                48px);
+                margin-top: 25px;
+                border: 0;
+                color: #fff;
+                font-size: 20px;
+                @include hide-text;
+                background-color: $color-3;
+                background: url("../images/login.png") no-repeat;
+                background-position: 0 0;
+                outline: none;
+                cursor: pointer;
+                &:hover {
+                    background-position: 0 -71px;
+                }
+                &:active {
+                    background-position: 0 -145px;
+                }
+            }
+        }
+        .login-error {
+            display: none;
+            @include fixed-center(190px,
+            40px);
+            padding: 20px;
+            width: 150px;
+            font-size: 12px;
+            color: #fff;
+            text-align: center;
+            background-color: #000;
+            @include border-radius(8px);
+            @include opacity(0);
+        }
+        .login-error p {
+            margin-top: 15px;
+        }
+    }
+}
+
+.vedio-frame {
+    display: none;
+    @include fixed-center(580px,
+    425px,
+    1250);
+    padding: 0 15px 25px;
+    background: #fff;
+    @at-root {
+        .vedio-close {
+            @extend .login-close;
+            a {
+                margin-right: 0;
+            }
+        }
+        .vedio-content {
+            h1 {
+                margin-bottom: 10px;
+                font-size: 15px;
+                color: #444;
+            }
+            #myVideo {
+                cursor: pointer;
+            }
+        }
+    }
+}
