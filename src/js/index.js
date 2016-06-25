@@ -619,23 +619,26 @@ SubList.prototype.composeEle = function(data) {
 		var hovBox = dom.insertElement(subBox, 'a', 'last', {
 			'class': 'sub-hover'
 		});
-		var hovImg = dom.insertElement(hovBox, 'img', 'last', {
+		var topBox = dom.insertElement(hovBox, 'div', 'last', {
+			'class': 'top'
+		})
+		var hovImg = dom.insertElement(topBox, 'img', 'last', {
 			'src': dataList[i].middlePhotoUrl,
 		});
-		var hovTitle = dom.insertElement(hovBox, 'h3', 'last');
+		var hovTitle = dom.insertElement(topBox, 'h3', 'last');
 		var hovTitleText = dom.insertText(hovTitle, dataList[i].name);
-		var hovLearner = dom.insertElement(hovBox, 'p', 'last', {
+		var hovLearner = dom.insertElement(topBox, 'p', 'last', {
 			'class': 'num'
 		});
 		var hoviEle = dom.insertElement(hovLearner, 'i', 'last', {
 			'class': 'icon-user'
 		});
 		var hovLearnerNum = dom.insertText(hovLearner, ' ' + dataList[i].learnerCount + '人在学');
-		var provider = dom.insertElement(hovBox, 'p', 'last', {
+		var provider = dom.insertElement(topBox, 'p', 'last', {
 			'class': 'provider'
 		});
 		var providerText = dom.insertText(provider, '发布者：' + dataList[i].provider);
-		var hovSort = dom.insertElement(hovBox, 'p', 'last', {
+		var hovSort = dom.insertElement(topBox, 'p', 'last', {
 			'class': 'sort'
 		});
 		var hovSortText = dom.insertText(hovSort, '分类：' + dataList[i].categoryName);

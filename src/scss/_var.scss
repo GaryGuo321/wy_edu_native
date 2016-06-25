@@ -1,31 +1,25 @@
 // nav
 $nav-margin-r:28px;
-
 // banner盒子和图片的高度
-$height-1:400px;
-$height-2:356px;
-
+$height-1:460px;
+$height-2:400px;
 // follow
 $fl-line-height:21px;
-
 // main
 $m-bgcolor:#f8f8f8;
-
 // 大屏幕的最小宽度
 $min-width:1205px;
 $small-min-width:1005px;
-
 // left subject
 // 课程价格颜色
 $sub-price-color:#ff3f00;
 // 页码颜色
 $page-num-color:#9dd8b1;
-
 // footer
 $f-bgcolor:#2c3339;
 $f-color:#8b8f92;
-
-
+// 关注hover颜色
+$hov-follow:#2fb456;
 // 页面主色调，绿色
 $color-2:#21a557;
 //页面主色调，绿色
@@ -54,5 +48,6 @@ $color-16:#ccc;
 $color-17:#fafafa;
 // 输入框边框颜色
 $color-18:#dfdfdf;
-
 $hover-sub-margin:255px;
+
+$color-sub:#bbb;

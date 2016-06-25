@@ -229,6 +229,8 @@ a {
           background-repeat: no-repeat;
           background-image: url(../images/product.png) \9;
           background-position: -124px -120px; }
+        .notice-content a:hover, .notice-content a:active {
+          color: #21a557; }
 
   .h-content {
     width: 1205px;
@@ -286,6 +288,8 @@ a {
         border-radius: 2px;
         background-color: #21a557;
         cursor: pointer; }
+        .follow:hover, .follow:active {
+          background-color: #2fb456; }
 
       .follow-now {
         display: inline-block;
@@ -369,24 +373,24 @@ a {
       min-width: 1005px; } }
   .m-banner {
     position: relative;
-    height: 400px; }
+    height: 460px; }
     @media screen and (max-width: 1205px) {
       .m-banner {
-        height: 356px; } }
+        height: 400px; } }
     .m-banner img {
       position: absolute;
       left: 50%;
-      margin-left: -718.25px;
+      margin-left: -826px;
       z-index: 1;
-      height: 400px;
+      height: 460px;
       filter: alpha(opacity=0);
       opacity: 0; }
       @media screen and (max-width: 1205px) {
         .m-banner img {
-          height: 356px;
+          height: 400px;
           position: absolute;
           left: 50%;
-          margin-left: -640px;
+          margin-left: -718.25px;
           z-index: 1; } }
     .m-banner .arrow {
       position: absolute;
@@ -577,7 +581,7 @@ a {
         .subject .album {
           margin: 6px 7px 0 7px;
           font-size: 13px;
-          color: #999; }
+          color: #bbb; }
         .subject .num, .subject .sub-hover .provider, .sub-hover .subject .provider, .subject .sub-hover .sort, .sub-hover .subject .sort {
           display: inline-block;
           vertical-align: middle;
@@ -587,8 +591,8 @@ a {
           margin: 6px 7px 0 7px;
           padding: 2px 3px;
           font-size: 12px;
-          color: #999;
-          border: 1px solid #999;
+          color: #bbb;
+          border: 1px solid #bbb;
           border-radius: 2px; }
         .subject .price {
           margin: 6px 7px 10px 7px;
@@ -601,10 +605,13 @@ a {
         left: 10px;
         top: -10px;
         z-index: 1400;
-        padding: 10px;
         width: 460px;
         background-color: #fff;
         box-shadow: 0 1px 1px 1px #e6e6e6; }
+        .sub-hover .top {
+          padding: 10px;
+          overflow: hidden;
+          *zoom: 1; }
         .sub-hover img {
           float: left;
           width: 244.98px;
@@ -616,16 +623,17 @@ a {
         .sub-hover .num, .sub-hover .provider, .sub-hover .sort {
           margin: 0 0 10px 255px;
           font: 12px/12px 'Microsoft YaHei';
-          color: #666; }
+          color: #838383; }
         .sub-hover .provider {
           margin-bottom: 6px; }
         .sub-hover .sort {
           margin-bottom: 6px; }
         .sub-hover .description {
-          clear: both;
-          min-height: 90px;
-          padding-top: 17px;
-          font: 14px/24px 'Microsoft YaHei'; }
+          min-height: 80px;
+          padding: 10px;
+          font: 14px/24px 'Microsoft YaHei';
+          color: #838383;
+          background-color: #f8f8f8; }
 
       .page-num {
         overflow: hidden;
@@ -734,7 +742,7 @@ a {
           overflow: hidden;
           *zoom: 1; }
           .rank .rank-list:hover, .rank .rank-list:active {
-            background-color: #eee; }
+            border-right: 1px solid #999; }
           .rank .rank-list div {
             float: left;
             margin-right: 10px;
@@ -756,7 +764,7 @@ a {
           .rank .rank-list p {
             margin-top: 10px;
             font-size: 12px;
-            color: #999; }
+            color: #bbb; }
 
 .footer {
   overflow: hidden;
