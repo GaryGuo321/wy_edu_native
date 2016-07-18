@@ -47,14 +47,7 @@
         <div class="main">
             <!-- banner -->
             <div class="m-banner">
-                <a href="http://open.163.com/" target="_blank"><img src="./src/images/banner1.jpg" class="banner1 banner"></a>
-                <a href="http://study.163.com/" target="_blank"><img src="./src/images/banner2.jpg" class="banner2 banner"></a>
-                <a href="http://www.icourse163.org/" target="_blank"><img src="./src/images/banner3.jpg" class="banner3 banner"></a>
-                <div class="arrow" id="arrow">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+                <div class="arrow" id="arrow"></div>
             </div>
             <!-- 网易产品 -->
             <div class="m-product">
@@ -216,11 +209,20 @@
         <!-- 视频播放区域 -->
         <div class="vedio-content">
             <h1>请观看下面的视频</h1>
-            <video width="550px" height="350px" controls="controls" poster="./src/images/DSC_21@2x.png" src="http://mov.bn.netease.com/open-movie/nos/mp4/2014/12/30/SADQ86F5S_shd.mp4" style="background-color: black;" type="video/mp4" jktag="0001|0.1|71045" id="myVideo">您的浏览器不支持 video 标签。</video>
+            <!-- 在此插入视频信息 -->
         </div>
     </div>
-    <script type="text/javascript" src="./src/js/myLibrary.js"></script>
+    <!--build:js ./src/js/index.min.js -->
+    <script type="text/javascript" src="./src/js/lib/myLibrary.js"></script>
+    <script type="text/javascript" src="./src/js/component/notice.js"></script>
+    <script type="text/javascript" src="./src/js/component/follow.js"></script>
+    <script type="text/javascript" src="./src/js/component/login.js"></script>
+    <script type="text/javascript" src="./src/js/component/banner.js"></script>
+    <script type="text/javascript" src="./src/js/component/messageScoll.js"></script>
+    <script type="text/javascript" src="./src/js/component/subjectList.js"></script>
+    <script type="text/javascript" src="./src/js/component/vedio.js"></script>
     <script type="text/javascript" src="./src/js/index.js"></script>
+    <!-- endbuild -->
 </body>
 
 </html>

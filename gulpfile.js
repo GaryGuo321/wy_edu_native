@@ -6,6 +6,7 @@ var cleanCss = require('gulp-clean-css');
 // js
 var uglify = require('gulp-uglify');
 var jshint = require('gulp-jshint');
+var concat = require('gulp-concat');
 // img
 var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
@@ -14,9 +15,13 @@ var htmlmin = require('gulp-htmlmin');
 // 清理
 var clean = require('gulp-clean');
 
+var useref = require('gulp-useref');
+var rev = require('gulp-rev'); // 对文件名加MD5后缀
+var revCollector = require('gulp-rev-collector');
+
+
 // css
 gulp.task('css', ['clean'], function() {
-	// gulp.src('./src/scss/index.scss')
 	sass('./src/scss/index.scss')
 		.on('error', sass.logError)
 		.pipe(autoprefixer('last 4 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
@@ -29,10 +34,11 @@ gulp.task('css', ['clean'], function() {
 
 // js
 gulp.task('js', ['clean'], function() {
-	gulp.src('./src/js/*.js')
+	gulp.src(['./src/js/lib/*.js', './src/js/component/*.js', './src/js/*.js'])
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
 		.pipe(uglify())
+		.pipe(concat('index.min.js'))
 		.pipe(gulp.dest('./dist/src/js'))
 });
 
@@ -51,6 +57,7 @@ gulp.task('img', ['clean'], function() {
 // html
 gulp.task('html', ['clean'], function() {
 	gulp.src('./index.html')
+		.pipe(useref())
 		.pipe(htmlmin({
 			removeComments: true,
 			collapseWhitespace: true,
