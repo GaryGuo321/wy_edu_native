@@ -1,5 +1,7 @@
 # wy_edu_native
 
+网易教育产品部页面，使用原生js编写，有ajax数据交互<br>
+
 兼容IE8+<br>
 
 用户名：studyOnline 密码：study.163.com<br>
