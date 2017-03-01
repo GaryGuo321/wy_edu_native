@@ -147,11 +147,16 @@ a,
 a:hover {
   color: #333; }
 
+html {
+  height: 100%; }
+
 body {
   font-family: 'Microsoft YaHei',Helvetica,arial,simsun,sans-serif;
   position: relative;
   background: #fff;
-  color: #333; }
+  color: #333;
+  width: 100%;
+  height: 100%; }
 
 a {
   text-decoration: none;
@@ -202,10 +207,14 @@ a {
     overflow: hidden;
     *zoom: 1; }
     .notice-content {
+      overflow: hidden;
+      *zoom: 1;
       width: 1205px;
       margin: 0 auto; }
       @media screen and (max-width: 1205px) {
         .notice-content {
+          overflow: hidden;
+          *zoom: 1;
           width: 1005px;
           margin: 0 auto; } }
       .notice-content p {
@@ -225,9 +234,6 @@ a {
           width: 8px;
           height: 8px;
           background-image: url("../images/product@2x.png");
-          -webkit-background-size: 130px 125.5px;
-          -moz-background-size: 130px 125.5px;
-          -o-background-size: 130px 125.5px;
           background-size: 130px 125.5px;
           background-repeat: no-repeat;
           background-image: url(../images/product.png) \9;
@@ -275,15 +281,14 @@ a {
       *zoom: 1;
       *display: inline;
       margin-left: 26px; }
-      .follow,
-      .fans,
-      .follow-now {
+      .login,
+      .login-now {
         float: left;
         font-family: SimSun;
         font-size: 12px;
         text-align: center; }
 
-      .follow {
+      .login {
         margin: 0 15px 0 0;
         padding: 0 5px;
         line-height: 21px;
@@ -291,10 +296,10 @@ a {
         border-radius: 2px;
         background-color: #21a557;
         cursor: pointer; }
-        .follow:hover, .follow:active {
+        .login:hover, .login:active {
           background-color: #2fb456; }
 
-      .follow-now {
+      .login-now {
         display: inline-block;
         vertical-align: middle;
         *vertical-align: auto;
@@ -306,7 +311,7 @@ a {
         background: #f8f8f8;
         border-radius: 2px;
         border: 1px solid #eee; }
-        .follow-now i {
+        .login-now i {
           display: inline-block;
           vertical-align: middle;
           *vertical-align: auto;
@@ -316,24 +321,18 @@ a {
           height: 8px;
           margin-right: 6px;
           background-image: url("../images/product@2x.png");
-          -webkit-background-size: 130px 125.5px;
-          -moz-background-size: 130px 125.5px;
-          -o-background-size: 130px 125.5px;
           background-size: 130px 125.5px;
           background-repeat: no-repeat;
           background-image: url(../images/product.png) \9;
           background-position: -117px -115px; }
-        .follow-now span {
+        .login-now span {
           color: #999; }
-        .follow-now a {
+        .login-now a {
           color: #999;
           cursor: pointer; }
-          .follow-now a:hover, .follow-now a:active {
+          .login-now a:hover, .login-now a:active {
             text-decoration: underline;
             color: #39a030; }
-
-      .fans {
-        line-height: 21px; }
 
       .nav {
         display: inline-block;
@@ -371,7 +370,6 @@ a {
   min-width: 1205px;
   padding-bottom: 90px;
   -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   background-color: #f8f8f8;
   overflow: hidden;
@@ -438,7 +436,6 @@ a {
       float: left;
       width: 33.333%;
       -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
       box-sizing: border-box;
       padding: 0 45px 0 100px; }
       @media screen and (max-width: 1205px) {
@@ -473,9 +470,6 @@ a {
 
     .m-icon {
       background-image: url("../images/product@2x.png");
-      -webkit-background-size: 130px 125.5px;
-      -moz-background-size: 130px 125.5px;
-      -o-background-size: 130px 125.5px;
       background-size: 130px 125.5px;
       background-repeat: no-repeat;
       background-image: url(../images/product.png) \9;
@@ -497,7 +491,6 @@ a {
     overflow: hidden; }
     .m-env img {
       -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
       box-sizing: border-box;
       float: left;
       width: 20%;
@@ -511,7 +504,6 @@ a {
   .m-content {
     position: relative;
     -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     width: 1205px;
     margin: 0 auto;
@@ -561,7 +553,6 @@ a {
       .subject-box {
         position: relative;
         -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
         box-sizing: border-box;
         float: left;
         width: 25%;
@@ -599,7 +590,6 @@ a {
           white-space: nowrap;
           overflow: hidden;
           -ms-text-overflow: ellipsis;
-          -o-text-overflow: ellipsis;
           text-overflow: ellipsis; }
         .subject .album {
           margin: 6px 7px 0 7px;
@@ -630,7 +620,8 @@ a {
         z-index: 1400;
         width: 460px;
         background-color: #fff;
-        box-shadow: 0 1px 1px 1px #e6e6e6; }
+        -webkit-box-shadow: 0 1px 1px 1px #e6e6e6;
+                box-shadow: 0 1px 1px 1px #e6e6e6; }
         .sub-hover .top {
           padding: 10px;
           overflow: hidden;
@@ -664,7 +655,6 @@ a {
         margin-top: 5px;
         font-size: 12px; }
         .page-num .arrows {
-          display: none;
           float: right;
           width: 30px;
           height: 20px;
@@ -775,8 +765,7 @@ a {
             height: 50px;
             overflow: hidden; }
           .rank .rank-list img {
-            height: 50px;
-            margin-left: -35px; }
+            height: 50px; }
           .rank .rank-list h2 {
             margin-top: 3px;
             color: #333;
@@ -785,7 +774,6 @@ a {
             white-space: nowrap;
             overflow: hidden;
             -ms-text-overflow: ellipsis;
-            -o-text-overflow: ellipsis;
             text-overflow: ellipsis; }
           .rank .rank-list p {
             margin-top: 10px;
@@ -856,114 +844,104 @@ a {
     .fixed-back {
       min-width: 1005px; } }
 
-.login-frame {
+.login-close, .vedio-close {
+  overflow: hidden;
+  *zoom: 1;
+  background: #fff; }
+  .login-close a, .vedio-close a {
+    display: inline-block;
+    vertical-align: middle;
+    *vertical-align: auto;
+    *zoom: 1;
+    *display: inline;
+    float: right;
+    margin: 10px 10px 0 0;
+    font-weight: normal;
+    font-size: 12px; }
+    .login-close a:hover, .vedio-close a:hover, .login-close a:active, .vedio-close a:active {
+      color: #21a557; }
+
+.login-content h1 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #444; }
+.login-content .login-form {
+  position: relative; }
+  .login-content .login-form .user-message {
+    position: relative; }
+  .login-content .login-form .pwd-message {
+    position: relative; }
+  .login-content .login-form span {
+    display: inline-block;
+    vertical-align: middle;
+    *vertical-align: auto;
+    *zoom: 1;
+    *display: inline;
+    font-size: 16px;
+    color: #ccc; }
+  .login-content .login-form .remind-user, .login-content .login-form .remind-pwd {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+    left: 13px; }
+.login-content .user-name, .login-content .user-password {
+  display: block;
+  width: 273px;
+  height: 45px;
+  margin-bottom: 15px;
+  padding: 0 10px 0 10px;
+  font-size: 15px;
+  line-height: 45px;
+  background-color: #fafafa;
+  border: solid 1px #dfdfdf;
+  outline: none;
+  -webkit-box-shadow: inset 3px 3px #f1f1f1;
+  box-shadow: inset 3px 3px #f1f1f1; }
+.login-content .submit {
+  display: block;
+  width: 300px;
+  height: 48px;
+  margin-top: 25px;
+  border: 0;
+  color: #fff;
+  font-size: 20px;
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  text-transform: capitalize;
+  background-color: #39a030;
+  background: url("../images/login.png") no-repeat;
+  background-position: 0 0;
+  outline: none;
+  cursor: pointer; }
+  .login-content .submit:hover {
+    background-position: 0 -71px; }
+  .login-content .submit:active {
+    background-position: 0 -145px; }
+
+.login-error {
   display: none;
   position: fixed;
   left: 50%;
-  margin-left: -190px;
+  margin-left: -95px;
   top: 50%;
-  margin-top: -149px;
-  z-index: 1250;
-  background: #fff; }
-  .login-close, .vedio-close {
-    overflow: hidden;
-    *zoom: 1;
-    background: #fff; }
-    .login-close a, .vedio-close a {
-      display: inline-block;
-      vertical-align: middle;
-      *vertical-align: auto;
-      *zoom: 1;
-      *display: inline;
-      float: right;
-      margin: 10px 10px 0 0;
-      font-weight: normal;
-      font-size: 12px; }
-      .login-close a:hover, .vedio-close a:hover, .login-close a:active, .vedio-close a:active {
-        color: #21a557; }
+  margin-top: -20px;
+  z-index: 1;
+  padding: 20px;
+  width: 150px;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  background-color: #000;
+  border-radius: 8px;
+  filter: alpha(opacity=0);
+  opacity: 0; }
 
-  .login-content {
-    padding: 20px 40px 40px; }
-    .login-content h1 {
-      margin-bottom: 16px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #444; }
-    .login-content .login-form {
-      position: relative; }
-      .login-content .login-form span {
-        display: inline-block;
-        vertical-align: middle;
-        *vertical-align: auto;
-        *zoom: 1;
-        *display: inline;
-        font-size: 16px;
-        color: #ccc; }
-      .login-content .login-form .remind-user {
-        position: absolute;
-        left: 13px;
-        top: 16px;
-        z-index: 1; }
-      .login-content .login-form .remind-pwd {
-        position: absolute;
-        left: 13px;
-        top: 78px;
-        z-index: 1; }
-    .login-content .user-name, .login-content .user-password {
-      display: block;
-      width: 273px;
-      height: 45px;
-      margin-bottom: 15px;
-      padding: 0 10px 0 10px;
-      font-size: 15px;
-      line-height: 45px;
-      background-color: #fafafa;
-      border: solid 1px #dfdfdf;
-      outline: none;
-      -webkit-box-shadow: inset 3px 3px #f1f1f1;
-      box-shadow: inset 3px 3px #f1f1f1; }
-    .login-content .submit {
-      display: block;
-      width: 300px;
-      height: 48px;
-      margin-top: 25px;
-      border: 0;
-      color: #fff;
-      font-size: 20px;
-      text-indent: -119988px;
-      overflow: hidden;
-      text-align: left;
-      text-transform: capitalize;
-      background-color: #39a030;
-      background: url("../images/login.png") no-repeat;
-      background-position: 0 0;
-      outline: none;
-      cursor: pointer; }
-      .login-content .submit:hover {
-        background-position: 0 -71px; }
-      .login-content .submit:active {
-        background-position: 0 -145px; }
-
-  .login-error {
-    display: none;
-    position: fixed;
-    left: 50%;
-    margin-left: -95px;
-    top: 50%;
-    margin-top: -20px;
-    z-index: 1;
-    padding: 20px;
-    width: 150px;
-    font-size: 12px;
-    color: #fff;
-    text-align: center;
-    background-color: #000;
-    border-radius: 8px;
-    filter: alpha(opacity=0);
-    opacity: 0; }
-
-  .login-error p {
-    margin-top: 15px; }
+.login-error p {
+  margin-top: 15px; }
 
 .vedio-frame {
   display: none;
@@ -985,4 +963,55 @@ a {
   .vedio-content #myVideo {
     cursor: pointer; }
 
-/*# sourceMappingURL=index.css.map */
+/* modal */
+.g-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: rgba(59, 59, 59, 0.7); }
+
+.g-align {
+  display: inline-block;
+  width: 1px;
+  height: 100%;
+  vertical-align: middle; }
+
+.g-wrap {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 2px;
+  background-color: #fff;
+  min-width: 200px; }
+
+.g-header {
+  padding: 7px 0;
+  font-size: 16px;
+  text-align: left; }
+
+.g-main {
+  padding: 20px 30px;
+  font-size: 14px;
+  text-align: left; }
+
+.g-close {
+  overflow: hidden;
+  *zoom: 1;
+  background: #fff; }
+  .g-close a {
+    display: inline-block;
+    vertical-align: middle;
+    *vertical-align: auto;
+    *zoom: 1;
+    *display: inline;
+    float: right;
+    font-weight: normal;
+    font-size: 12px;
+    margin-right: 8px; }
+    .g-close a:hover, .g-close a:active {
+      color: #21a557; }

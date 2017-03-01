@@ -15,61 +15,81 @@
  */
 //<video width="550px" height="350px" controls="controls" poster="./src/images/DSC_21@2x.png" src="http://mov.bn.netease.com/open-movie/nos/mp4/2014/12/30/SADQ86F5S_shd.mp4" style="background-color: black;" type="video/mp4" jktag="0001|0.1|71045" id="myVideo">您的浏览器不支持 video 标签。</video>
 
-function VedioPaly(obj) {
-	var self = this;
-	this.back = dom.getId('fixed-back');
-	this.frame = dom.getId('vedio-frame');
-	this.vedioContent = dom.getClass(this.frame, 'vedio-content')[0];
-	help.extend(this, obj);
-	this.close = dom.getId('vedio-close');
-
-	this.status = 1;
-	// 插入vedio元素
-	(function() {
-		var template = help.html2node('<video width="' + self.vedio.width + '" height="' + self.vedio.height + '" controls="controls" poster="' + self.vedio.poster + '" src="' + self.vedio.src + '" style="background-color: #000;" type="' + self.vedio.type + '" id="' + self.vedio.id + '">您的浏览器不支持 video 标签。</video>');
-		self.vedioContent.appendChild(template);
-		self.vedio = dom.getId(self.vedio.id);
-	})();
-
-	this.showVedio();
-	this.closeVedio();
-	this.clickVedioPlay();
-	this.watch();
-}
-
-// 点击某个区域显示
-VedioPaly.prototype.showVedio = function() {
-	eventUnit.addHandler(this.showEle, 'click', function() {
-		this.vedio.load();
-		dom.show(this.back);
-		dom.show(this.frame);
-	}.bind(this));
-};
-// 点击隐藏
-VedioPaly.prototype.closeVedio = function() {
-	eventUnit.addHandler(this.close, 'click', function() {
-		this.vedio.pause();
-		dom.hide(this.back);
-		dom.hide(this.frame);
-		return false;
-	}.bind(this));
-};
-// 点击视频范围播放或暂停视频
-VedioPaly.prototype.clickVedioPlay = function() {
-	eventUnit.addHandler(this.vedio, 'click', function(e) {
-		if (this.status) {
-			this.vedio.play();
-		} else {
-			this.vedio.pause();
+(function(factory, window) {
+	// 模块化输出
+	if (typeof define == 'function') {
+		if (define.amd) {
+			// amd
+			define('vedio', ['jenny', 'emitter', 'lifeCycle', 'ejs'], factory);
 		}
-	}.bind(this));
-};
-VedioPaly.prototype.watch = function() {
-	// 监听视频播放状态
-	eventUnit.addHandler(this.vedio, 'pause', function(e) {
+	} else {
+		window.Vedio = factory(Jenny);
+	}
+})(function(_, Emitter, LifeCycle) {
+	function Vedio() {
+		LifeCycle.apply(this, arguments);
+		Emitter.apply(this, arguments);
+
 		this.status = 1;
-	}.bind(this));
-	eventUnit.addHandler(this.vedio, 'play', function(e) {
-		this.status = 0;
-	}.bind(this));
-};
+	}
+
+	_.extend(Vedio.prototype, Emitter.prototype, LifeCycle.prototype, {
+		templateUI: function() {
+			var data = {
+				src: this.src,
+				poster: this.poster,
+				width: this.width,
+				height: this.height,
+				type: this.type,
+				controls: this.controls,
+				id: this.id
+			}
+
+			this.template = _(ejs.render('<div class="g-modal vedio-modal">\
+		    <div class="g-align"></div>\
+		    <div class="g-wrap">\
+		        <div class="g-header">\
+					<div class="g-close">\
+	            		<a href="javascript:void(0)" class="close icon-cross"></a>\
+	        		</div>\
+		        </div>\
+		        <div class="g-main">\
+					<div class="vedio-content">\
+				        <h1>请观看下面的视频</h1>\
+				        <video width="<%= width %>" height="<%= height %>" controls="<%= controls %>" poster="<%= poster %>" src="<%= src %>" style="background-color: #000;" type="<%= type %>" id="<%= id %>">您的浏览器不支持 video 标签。</video>\
+				    </div>\
+		        </div>\
+		    </div>\
+		</div>', data), true);
+		},
+		eventUI: function() {
+			var _self = this;
+			_('.vedio-modal .close').addHandler('click', function(e) {
+				e.preventDefault();
+				_('.vedio-modal').hide();
+				_('#' + _self.id)[0].pause();
+			});
+
+			_('#' + this.id).addHandler('click', function(e) {
+				if (_self.status) {
+					this.play();
+					_self.status = 0;
+				} else {
+					this.pause();
+					_self.status = 1;
+				}
+			});
+		},
+		init: function(obj) {
+			_.extend(this, obj);
+			this.render(this.container);
+
+			return {
+				template: this.template,
+				id: this.id
+			};
+		}
+	});
+
+	return Vedio;
+}, window);

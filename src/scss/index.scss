@@ -56,8 +56,10 @@
             @include clearfix;
             @at-root {
                 .notice-content {
+                    @include clearfix;
                     @include width-center($min-width);
                     @media screen and (max-width: 1205px) {
+                        @include clearfix;
                         @include width-center($small-min-width);
                     }
                     p {
@@ -116,9 +118,8 @@
                     @include inline-block;
                     margin-left: 26px;
                     @at-root {
-                        .follow,
-                        .fans,
-                        .follow-now {
+                        .login,
+                        .login-now {
                             @include float-left;
                             font: {
                                 family: SimSun;
@@ -126,7 +127,7 @@
                             }
                             text-align: center;
                         }
-                        .follow {
+                        .login {
                             margin: 0 15px 0 0;
                             padding: 0 5px;
                             line-height: $fl-line-height;
@@ -136,7 +137,7 @@
                             cursor: pointer;
                             @include hover-bgcolor($hov-follow);
                         }
-                        .follow-now {
+                        .login-now {
                             @include inline-block;
                             margin-right: 15px;
                             padding: 0 8px;
@@ -163,9 +164,6 @@
                                 @include hover-under-color($color-3);
                                 cursor: pointer;
                             }
-                        }
-                        .fans {
-                            line-height: $fl-line-height;
                         }
                         .nav {
                             @include inline-block;
@@ -443,7 +441,7 @@
                             width: 460px;
                             background-color: #fff;
                             box-shadow: 0 1px 1px 1px #e6e6e6;
-                            .top{
+                            .top {
                                 padding: 10px;
                                 @include clearfix();
                             }
@@ -474,10 +472,10 @@
                                 // clear: both;
                                 @include min-height(80px);
                                 // padding-left: 15px;
-                                padding:10px;
+                                padding: 10px;
                                 font: 14px/24px 'Microsoft YaHei';
-                                color:#838383;
-                                background-color:#f8f8f8;
+                                color: #838383;
+                                background-color: #f8f8f8;
                             }
                         }
                         .page-num {
@@ -486,7 +484,7 @@
                             font-size: 12px;
                             .arrows {
                                 // 隐藏箭头
-                                display: none;
+                                // display: none;
                                 @include float-right;
                                 @include dimension(30px,
                                 20px);
@@ -598,8 +596,9 @@
                                 padding: 8px 10% 8px 10%;
                                 @include clearfix;
                                 // @include hover-bgcolor($color-5);
-                                &:hover,&:active{
-                                    border-right:1px solid #999;
+                                &:hover,
+                                &:active {
+                                    border-right: 1px solid #999;
                                 }
                                 div {
                                     @include float-left;
@@ -610,7 +609,7 @@
                                 }
                                 img {
                                     height: 50px;
-                                    margin-left: -35px;
+                                    // margin-left: -35px;
                                 }
                                 h2 {
                                     margin-top: 3px;
@@ -704,13 +703,7 @@
     @include opacity(0.75);
 }
 
-.login-frame {
-    display: none;
-    @include fixed-center(380px,
-    298px,
-    1250);
-    // @include inline-block;
-    background: #fff;
+.login-modal {
     @at-root {
         .login-close {
             @include clearfix;
@@ -727,7 +720,6 @@
             }
         }
         .login-content {
-            padding: 20px 40px 40px;
             h1 {
                 margin-bottom: 16px;
                 font: {
@@ -738,18 +730,25 @@
             }
             .login-form {
                 position: relative;
+                .user-message{
+                    position: relative;
+                }
+                .pwd-message{
+                    position: relative;
+                }
                 span {
                     @include inline-block;
                     font-size: 16px;
                     color: $color-16;
                 }
                 .remind-user {
-                    @include abs-left-top(13px,
-                    16px);
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: 13px;
                 }
                 .remind-pwd {
-                    @include abs-left-top(13px,
-                    78px);
+                    @extend .remind-user;
                 }
             }
             .user-name {
@@ -833,5 +832,62 @@
                 cursor: pointer;
             }
         }
+    }
+}
+
+
+/* modal */
+
+.g-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: rgba(59, 59, 59, 0.7);
+}
+
+.g-align {
+    display: inline-block;
+    width: 1px;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.g-wrap {
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 2px;
+    background-color: #fff;
+    min-width: 200px;
+}
+
+.g-header {
+    padding: 7px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+.g-main {
+    padding: 20px 30px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.g-close {
+    @include clearfix;
+    background: #fff;
+    a {
+        @include inline-block;
+        @include float-right;
+        font: {
+            weight: normal;
+            size: 12px;
+        }
+        @include hover-color($color-2);
+        margin-right: 8px;
     }
 }

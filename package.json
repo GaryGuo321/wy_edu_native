@@ -4,7 +4,8 @@
   "description": "用户名：studyOnline 密码：study.163.com",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm install && gulp server",
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,8 @@
   },
   "homepage": "https://github.com/GaryGuo321/wy_edu_native#readme",
   "devDependencies": {
+    "amd-optimize": "^0.6.1",
+    "browser-sync": "^2.18.7",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-cache": "^0.4.5",
@@ -33,6 +36,9 @@
     "gulp-ruby-sass": "^2.0.6",
     "gulp-uglify": "^1.5.4",
     "gulp-usemin": "^0.3.23",
-    "gulp-useref": "^3.1.0"
+    "gulp-useref": "^3.1.0",
+    "jshint": "^2.9.4",
+    "run-sequence": "^1.2.2",
+    "through2": "^2.0.3"
   }
 }
